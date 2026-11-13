@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dfakb4q46je28"]
+
+[ext_resource type="Script" uid="uid://imne72uc06t4" path="res://tower.gd" id="1_vedim"]
+[ext_resource type="Texture2D" uid="uid://p60xj8mo8k88" path="res://icon.svg" id="2_stebd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4uu8q"]
+radius = 203.0394
+
+[node name="Tower" type="Node2D" unique_id=715024601]
+script = ExtResource("1_vedim")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=414361141]
+self_modulate = Color(0.9843137, 0, 0.09803922, 1)
+texture = ExtResource("2_stebd")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=421924323]
+autostart = true
+
+[node name="Range" type="Area2D" parent="." unique_id=845600961]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range" unique_id=373507565]
+shape = SubResource("CircleShape2D_4uu8q")

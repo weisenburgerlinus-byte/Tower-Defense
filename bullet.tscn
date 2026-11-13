@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cmv4fvq7dkk3v"]
+
+[ext_resource type="Texture2D" uid="uid://p60xj8mo8k88" path="res://icon.svg" id="2_t4vbm"]
+
+[sub_resource type="GDScript" id="GDScript_v7oki"]
+script/source = "extends Area2D
+
+@export var speed: float = 400.0
+var damage: int = 1
+var target: Node2D = null
+
+func _process(delta: float) -> void:
+	#the bullet gets deleted if the enemy dies before it arrives
+	if not is_instance_valid(target):
+		queue_free()
+		return
+		
+	#fly straight to the enemy
+	global_position = global_position.move_toward(target.global_position, speed * delta)
+	look_at(target.global_position)
+		
+	#if the bullet close enough the the enemy it will be count as an hit
+	if global_position.distance_to(target.global_position) < 10.0:
+		target.take_damage(damage)
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pncl"]
+radius = 12.727922
+
+[node name="Bullet" type="Area2D" unique_id=1994019050]
+script = SubResource("GDScript_v7oki")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=555993936]
+self_modulate = Color(0.82057244, 0.80518514, 1.540184e-06, 1)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_t4vbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1131046421]
+position = Vector2(99, 103)
+shape = SubResource("CircleShape2D_7pncl")
