@@ -12,10 +12,6 @@ point_count = 5
 
 [node name="Main" type="Node2D" unique_id=443089803]
 script = ExtResource("1_1bvp3")
-gold = null
-base_health = null
-tower_cost = null
-min_tower_distance = null
 metadata/_edit_vertical_guides_ = [200.0]
 
 [node name="Path2D" type="Path2D" parent="." unique_id=334946407]

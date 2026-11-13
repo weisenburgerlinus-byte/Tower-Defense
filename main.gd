@@ -14,7 +14,7 @@ var selected_tower: Node2D = null
 
 func _ready() -> void:
 	if has_node("Tower"):
-		towers.append("$Tower")
+		towers.append($Tower)
 	update_ui()
 	
 func _unhandled_input(event: InputEvent) -> void:

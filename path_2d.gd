@@ -24,14 +24,19 @@ func _on_next_wave_pressed() -> void:
 	
 func _on_spawn_timer_timeout() -> void:
 		if spawned_enemies < max_enemies:
-			#copy the enemy
 			var new_enemy = enemy_scene.instantiate()
-			
-			#better enemies every wave
-			new_enemy.health  = 2 + current_wave
-			new_enemy.speed = 130.0 + (current_wave * 15.0)
-			
 			add_child(new_enemy)
+			
+			var type = "normal"
+			var roll = randf()
+			
+			if current_wave >= 3 and roll < 0.20:
+				type = "tank"
+			elif current_wave >= 2 and roll < 0.50:
+				type = "runner"
+				
+			new_enemy.setup_enemy(type, current_wave)
+			
 			spawned_enemies += 1
 		else:
 			#stops the timer and shows next wave button again

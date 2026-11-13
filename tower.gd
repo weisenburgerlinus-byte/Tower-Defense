@@ -21,6 +21,8 @@ func _ready() -> void:
 	level_label.position = Vector2(-20, -85)
 	add_child(level_label)
 	
+	set_selected(false)
+	
 	#Spins the tower in direction of the enemy
 func _process(_delta: float) -> void:
 	if enemies_in_range.size() > 0:
@@ -59,14 +61,18 @@ func upgrade_from_merge() -> void:
 	
 #change the color after merge
 func set_selected(selected: bool) -> void:
+	modulate = Color(1, 1, 1)
+	
 	if selected:
-		modulate = Color(0.3, 1.0, 0.3)
+		$Sprite2D.self_modulate = Color(0.2, 1.0, 0.2)
 	else:
 		if level == 1:
-			modulate = Color(1, 1, 1)
+			$Sprite2D.self_modulate = Color(1.0, 0.3, 0.3)
 		elif level == 2:
-			modulate = Color(1.0, 0.8, 0.2)
+			$Sprite2D.self_modulate = Color(1.0, 0.85, 0.1)
 		elif level == 3:
-			modulate = Color(0.2, 0.8, 1.0)
+			$Sprite2D.self_modulate = Color(0.1, 0.8, 1.0)
+		elif level == 4:
+			$Sprite2D.self_modulate = Color(0.8, 0.2, 1.0)
 		else:
-			modulate = Color(1.0, 0.2, 0.8)
+			$Sprite2D.self_modulate = Color(1.0, 1.0, 1.0)
