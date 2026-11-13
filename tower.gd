@@ -25,8 +25,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if enemies_in_range.size() > 0:
 		var target = enemies_in_range[0]
-		look_at(target.global_position)
-		level_label.global_rotation = 0
+		if is_instance_valid(target):
+			$Sprite2D.look_at(target.global_position)
 		
 func _on_area_entered(area: Area2D) -> void:
 	var parent = area.get_parent()

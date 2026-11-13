@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cbo0lp3ou2o8h"]
+
+[ext_resource type="Script" uid="uid://c1g2k3jinb56l" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://dxtrduc67cf8u" path="res://path_2d.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://dfakb4q46je28" path="res://tower.tscn" id="2_h2yge"]
+
+[sub_resource type="Curve2D" id="Curve2D_1bvp3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 75, 696, 0, 0, 0, 0, 477, 162, 0, 0, 0, 0, 733, 846, 0, 0, 0, 0, 859, 486, 0, 0, 0, 0, 1604, 187)
+}
+point_count = 5
+
+[node name="Main" type="Node2D" unique_id=443089803]
+script = ExtResource("1_1bvp3")
+gold = null
+base_health = null
+tower_cost = null
+min_tower_distance = null
+metadata/_edit_vertical_guides_ = [200.0]
+
+[node name="Path2D" type="Path2D" parent="." unique_id=334946407]
+curve = SubResource("Curve2D_1bvp3")
+script = ExtResource("1_h2yge")
+
+[node name="SpawnTimer" type="Timer" parent="Path2D" unique_id=1924261379]
+wait_time = 2.0
+
+[node name="Line2D" type="Line2D" parent="Path2D" unique_id=311159977]
+
+[node name="Tower" parent="." unique_id=715024601 instance=ExtResource("2_h2yge")]
+position = Vector2(298, 242)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=454771180]
+position = Vector2(734, 505)
+zoom = Vector2(0.75, 0.75)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1309165657]
+
+[node name="StatsLabel" type="Label" parent="CanvasLayer" unique_id=699585197]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="NextWaveButton" type="Button" parent="CanvasLayer" unique_id=1930252422]
+offset_left = 583.0
+offset_top = 76.0
+offset_right = 745.0
+offset_bottom = 107.0
+text = "Next Wave (Welle 1)"
