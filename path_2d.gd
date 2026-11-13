@@ -11,7 +11,23 @@ var current_wave: int = 0
 @onready var next_wave_button: Button = $"../CanvasLayer/NextWaveButton"
 
 func _ready() -> void:
-	$Line2D.points = curve.get_baked_points()
+	if has_node("Line2D"):
+		$Line2D.points = curve.get_baked_points()
+		$Line2D.width = 44.0
+		$Line2D.default_color = Color(0.82, 0.70, 0.48)
+		$Line2D.joint_mode = Line2D.LINE_JOINT_ROUND
+		$Line2D.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		$Line2D.end_cap_mode = Line2D.LINE_CAP_ROUND
+		
+		var border = Line2D.new()
+		border.points = $Line2D.points
+		border.width  = 54.0
+		border.default_color = Color(0.35, 0.28, 0.18)
+		border.joint_mode = Line2D.LINE_JOINT_ROUND
+		border.begin_cap_mode = Line2D.LINE_CAP_ROUND
+		border.end_cap_mode = Line2D.LINE_CAP_ROUND
+		add_child(border)
+		move_child(border, 0)
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	next_wave_button.pressed.connect(_on_next_wave_pressed)
 	
